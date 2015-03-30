@@ -1,2 +1,2 @@
-# ruby_color_oicker
+# ruby_color_picker
 Identifies Colors of Maximum Mathematical Distinction
