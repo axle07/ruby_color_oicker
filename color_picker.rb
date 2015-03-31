@@ -1,30 +1,44 @@
 arrLength = ARGV.first.to_i
-rgb = Array.new(arrLength) { Array.new(3, 255) }
-max_rgb = 255
-j = 0
+rgb = Array.new(arrLength) { Array.new(3, 127) }
+interval1 = 127
 i = 0
-k = 0
+j = 0
 
 while j < arrLength - 2
   i = 0
   while i < 3
-    rgb[j][i] -= max_rgb
+    rgb[j][i] -= interval1
     i += 1
     j += 1
   end
   i = 0
-  while k < 3
-    rgb[j][k] -= max_rgb
-      k += 1
-    if k < 3
-      rgb[j][k] -= max_rgb
+  while i < 3
+    rgb[j][i] -= interval1
+      i += 1
+    if i < 3
+      rgb[j][i] -= interval1
     else
-      rgb[j][0] -= max_rgb
+      rgb[j][0] -= interval1
     end
     j += 1
   end
-  k = 0
-  max_rgb = (max_rgb / 2.0).round
+  i = 0
+  while i < 3 
+    rgb[j][i] += interval1
+    i += 1
+    j += 1
+  end
+  while i < 3
+    rgb[j][i] += interval1
+    i += 1
+    if i < 3
+      rgb[j][i] += interval1
+    else
+      rgb[j][0] += interval1
+    end
+    j += 1
+  end
+  interval1 = (interval1 / 2.0).round
 end
 
 p rgb
