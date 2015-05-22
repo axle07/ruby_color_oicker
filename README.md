@@ -1,2 +1,2 @@
 # ruby_color_picker
-Identifies Colors of Maximum Mathematical Distinction
+Generates 48 Colors of High Contrast
