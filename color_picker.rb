@@ -1,52 +1,15 @@
-arrLength = ARGV.first.to_i
-rgb = Array.new(arrLength) { Array.new(3, 127) }
-interval1 = 127
-i = 0
-j = 0
+$colors = Array.new
+#intervals = [128, 64, 192, 32, 96, 160, 224]
+intervals = [224, 32, 128, 160, 96, 192, 64].reverse!
 
-while j < arrLength - 2
-  i = 0
-  while i < 3
-    rgb[j][i] -= interval1
-    i += 1
-    j += 1
-  end
-  i = 0
-  while i < 3
-    rgb[j][i] -= interval1
-      i += 1
-    if i < 3
-      rgb[j][i] -= interval1
-    else
-      rgb[j][0] -= interval1
-    end
-    j += 1
-  end
-  i = 0
-  while i < 3 
-    rgb[j][i] += interval1
-    i += 1
-    j += 1
-  end
-  while i < 3
-    rgb[j][i] += interval1
-    i += 1
-    if i < 3
-      rgb[j][i] += interval1
-    else
-      rgb[j][0] += interval1
-    end
-    j += 1
-  end
-  interval1 = (interval1 / 2.0).round
+def generate(n)
+  a = [n, 255, 0]
+  $colors << a.permutation.to_a
 end
 
-p rgb
-#colors = rgb.map {|a| a.map {|c| "%x" % c}.join('')}
-colors = rgb.map {|a| "%02X%02X%02X" % a}
+intervals.map { |i| generate(i) }
+$colors.flatten!(1)
 
-puts "<html><body>"
-colors.each do |color|
-  puts "<div style=\"background-color: ##{color}; float: left; width:100%; height: 10px\">&nbsp;</div>"
-end
+puts "<html><head></head><body>"
+$colors.map { |c| puts '<div style="height: 100px; width: 100%; background-color: rgb(' + c[0].to_s + ',' +  c[1].to_s + ',' +  c[2].to_s + ')"></div>' }
 puts "</body></html>"
